@@ -1,0 +1,41 @@
+{
+  "title": "Telegram Public Channel Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "channels": {
+      "title": "Public channels",
+      "type": "array",
+      "description": "Public channel names, @handles, or https://t.me/channel and https://t.me/s/channel URLs. The API also accepts objects with a channel property.",
+      "editor": "stringList",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "maxItems": 50,
+      "prefill": ["telegram"]
+    },
+    "maxMessagesPerChannel": {
+      "title": "Maximum messages per channel",
+      "type": "integer",
+      "description": "Maximum messages collected per channel before keyword filtering. The runtime default is 50.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 1000,
+      "default": 50,
+      "prefill": 20
+    },
+    "sinceDate": {
+      "title": "Earliest message date",
+      "type": "string",
+      "description": "Optional ISO date or timestamp, for example 2026-11-01 or 2026-11-01T00:00:00Z. Messages at this boundary are included. Omit to collect without a date cutoff.",
+      "editor": "textfield"
+    },
+    "keywords": {
+      "title": "Keywords",
+      "type": "array",
+      "description": "Optional case-insensitive text filter. A message must contain at least one keyword. Omit or leave empty to include all collected messages.",
+      "editor": "stringList",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["channels"]
+}

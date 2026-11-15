@@ -1,0 +1,19 @@
+{
+  "actorSpecification": 1,
+  "name": "telegram-public-channel-scraper",
+  "title": "Telegram Public Channel Scraper",
+  "description": "Extract public Telegram channel messages from the web preview without an account or Telegram API credentials.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "usesStandbyMode": false,
+  "defaultMemoryMbytes": 1024,
+  "minMemoryMbytes": 1024,
+  "maxMemoryMbytes": 4096,
+  "dockerfile": "./Dockerfile",
+  "readme": "../README.md",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

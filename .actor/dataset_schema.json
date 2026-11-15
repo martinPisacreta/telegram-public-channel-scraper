@@ -1,0 +1,29 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "messages": {
+      "title": "Public channel messages",
+      "transformation": {
+        "fields": ["channel", "messageId", "url", "date", "text", "views", "hasPhoto", "hasVideo", "photoUrls", "links", "forwardedFrom", "isReply"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "channel": { "label": "Channel", "format": "text" },
+          "messageId": { "label": "Message ID", "format": "number" },
+          "url": { "label": "Message URL", "format": "link" },
+          "date": { "label": "Date (UTC)", "format": "text" },
+          "text": { "label": "Text", "format": "text" },
+          "views": { "label": "Views", "format": "number" },
+          "hasPhoto": { "label": "Has photo", "format": "boolean" },
+          "hasVideo": { "label": "Has video", "format": "boolean" },
+          "photoUrls": { "label": "Photo URLs", "format": "array" },
+          "links": { "label": "Text links", "format": "array" },
+          "forwardedFrom": { "label": "Forwarded from", "format": "text" },
+          "isReply": { "label": "Is reply", "format": "boolean" }
+        }
+      }
+    }
+  }
+}

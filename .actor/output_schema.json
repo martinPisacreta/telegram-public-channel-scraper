@@ -1,0 +1,19 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Telegram Public Channel Scraper output",
+  "description": "Public channel messages in the dataset and a run summary in the key-value store.",
+  "properties": {
+    "messages": {
+      "type": "string",
+      "title": "Public messages",
+      "description": "Saved messages with channel, ID, URL, date, plain text, views, media indicators, photo URLs, links, forwarding and reply indicators.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Run summary",
+      "description": "OUTPUT record containing a report per channel (channel, messages, pages, error) and totals for requested, succeeded, failed and skipped channels, saved messages and attempted pages.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    }
+  }
+}
