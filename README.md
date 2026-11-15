@@ -63,6 +63,83 @@ Pay per event: `run-started` costs $0.005 per valid run and `message` costs $0.0
 
 Billing events are `run-started` for a valid run and `message` for each saved message. Message capacity is calculated before requesting pages and allocated to channels in input order. Channels without an allocation are skipped. Unused capacity from errors or keyword filtering is not reassigned to later channels. Charges are not retried automatically.
 
+## What can you do with it?
+
+### Collect public announcements
+Gather messages from a public channel for editorial review. This example uses the Telegram channel already included in the local examples and tests.
+
+```json
+{
+  "channels": ["telegram"],
+  "maxMessagesPerChannel": 40
+}
+```
+
+### Prepare a recent-content research sample
+Collect public channel content with an inclusive date cutoff. The result depends on the available public pages and the configured message limit.
+
+```json
+{
+  "channels": ["telegram"],
+  "maxMessagesPerChannel": 100,
+  "sinceDate": "2026-11-01"
+}
+```
+
+### Select posts by topic
+Filter collected messages using case-insensitive text keywords. This example selects messages containing either keyword; a run can return no matches.
+
+```json
+{
+  "channels": ["telegram"],
+  "maxMessagesPerChannel": 100,
+  "keywords": ["update", "feature"]
+}
+```
+
+### Create a small editorial review batch
+Limit collection to a small number of public channel messages for manual review. Export the resulting dataset to continue your review outside the run.
+
+```json
+{
+  "channels": ["telegram"],
+  "maxMessagesPerChannel": 20
+}
+```
+
+## How much does it cost?
+
+The event prices are USD 0.005 per run plus USD 0.0008 per message event.
+
+- A run with 40 billed message events: USD 0.005 + (40 × USD 0.0008) = **USD 0.037**.
+- A run with 1000 billed message events: USD 0.005 + (1000 × USD 0.0008) = **USD 0.805**.
+
+These examples use actual billed message counts, not the requested collection maximum. They cover the listed event prices; check your Apify account for any additional applicable platform charges.
+
+## FAQ
+
+### Does it access private chats or groups?
+The Actor reads public channel pages. It does not provide access to private chats, private groups or content requiring an account login.
+
+### What are the collection limits?
+Input accepts 1–50 channels and `maxMessagesPerChannel` from 1 to 1000, with a runtime default of 50. The message limit applies before keyword filtering, so the final dataset can contain fewer matching messages.
+
+### How do date and keyword filters work?
+`sinceDate` accepts an ISO date or timestamp and includes messages at the boundary. Keyword matching ignores case and accepts a message when at least one supplied keyword appears in its text.
+
+### What if a public channel cannot be read?
+Review the run's channel errors before using its results. An inaccessible or nonexistent channel is not evidence that the channel has no messages, and public-page availability limits what can be collected.
+
+### How do I run it daily?
+Save the input as an Apify Task and create a daily Schedule for that Task. Choose the channels, date cutoff and collection limit to suit each scheduled collection.
+
+### How do I export CSV or JSON?
+Open the run's default dataset in Apify and select CSV or JSON export. Exported records reflect the messages collected and retained by that run's filters.
+
+## Integrations
+
+Start runs through the Apify API with public channel inputs and collection settings. Configure Apify webhooks to notify your system about run lifecycle events. In an automation workflow, wait for completion, check run errors and retrieve the message dataset for editorial or research processing.
+
 ## Responsible use
 
 Use public channel content for purposes you are authorized to pursue. Respect applicable terms, privacy, and content rights when collecting or sharing messages. Do not use the Actor to bypass access restrictions or target individuals.
